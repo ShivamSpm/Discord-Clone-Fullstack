@@ -3,11 +3,11 @@ import { redirectToSignIn } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 import React from "react";
 import { redirect } from "next/navigation";
-// import ChatHeader from "@/components/chat/ChatHeader";
-// import ChatInput from "@/components/chat/ChatInput";
 // import ChatMessages from "@/components/chat/ChatMessages";
 import { ChannelType } from "@prisma/client";
 import ChatHeader from "@/components/chat/chat-header";
+import ChatInput from "@/components/chat/chat-input";
+import ChatMessages from "@/components/chat/chat-messages";
 // import MediaRoom from "@/components/MediaRoom";
 
 interface PageProps {
@@ -41,7 +41,8 @@ const ChannelIdPage = async ({ params }: PageProps) => {
         serverId={channel.serverId}
         type="channel"
       />
-      {/* {channel.type === ChannelType.TEXT && (
+      
+      {channel.type === ChannelType.TEXT && (
         <>
           <ChatMessages
             member={member}
@@ -57,6 +58,7 @@ const ChannelIdPage = async ({ params }: PageProps) => {
             chatId={channel.id}
             paramValue={channel.id}
           />
+
           <ChatInput
             name={channel.name}
             type="channel"
@@ -65,7 +67,7 @@ const ChannelIdPage = async ({ params }: PageProps) => {
           />
         </>
       )}
-      {channel.type === ChannelType.AUDIO && (
+      {/* {channel.type === ChannelType.AUDIO && (
         <MediaRoom chatId={channel.id} video={false} audio={true} />
       )}
       {channel.type === ChannelType.VIDEO && (
