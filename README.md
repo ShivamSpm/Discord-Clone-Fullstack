@@ -47,7 +47,7 @@ The Discord clone is designed to simulate the core functionalities of the popula
 
 ### Screenshots
 * `Login page`
-[image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/ad704422-d3ad-4b8f-b83f-5238fc0c7214)
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/ad704422-d3ad-4b8f-b83f-5238fc0c7214)
 
 * `Create new server page`
 
