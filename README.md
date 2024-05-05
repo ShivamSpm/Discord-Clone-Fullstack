@@ -24,10 +24,11 @@ The Discord clone is designed to simulate the core functionalities of the popula
 
 ### Features
 
-* User Authentication: Secure login and registration functionality using Clerk.
-* Real-Time Messaging: Users can send and receive messages instantly with Socket.io.
+* User Authentication: Secure login and registration functionality using Clerk
+* Server Management: Users can create their own channel, invite friends and manage members by assigning them roles or removing them from the server
 * Channel Management: Users can create, join, and manage channels with voice and video functionality
-* Responsive Design: Utilizing Tailwind CSS and shadcn/ui components for a flexible and adaptive user interface.
+* Real-Time Messaging: Users can send and receive messages instantly with Socket.io. They can send messages in a text channel or directly to their friends. They have the ability to edit, delete or reply to a message
+* Responsive Design: Utilizing Tailwind CSS and shadcn/ui components for a flexible and adaptive user interface
 
 -----------------------------------------
 
