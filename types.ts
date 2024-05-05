@@ -16,3 +16,10 @@ export type NextApiResponseServerIO = NextApiResponse & {
     };
   };
 };
+
+
+export interface ReplyContextType {
+  id: string | undefined;
+  content: string;
+  authorName: string;
+}

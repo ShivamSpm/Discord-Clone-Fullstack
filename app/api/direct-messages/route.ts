@@ -1,6 +1,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { Message } from "@prisma/client";
+import { DirectMessage } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 const MESSAGES_PER_PAGE = 10;
@@ -13,20 +13,20 @@ export async function GET(req: Request) {
     }
     const { searchParams } = new URL(req.url);
     const cursor = searchParams.get("cursor");
-    const channelId = searchParams.get("channelId");
-    if (!channelId) {
-      return new NextResponse("Channel ID Missing", { status: 400 });
+    const conversationId = searchParams.get("conversationId");
+    if (!conversationId) {
+      return new NextResponse("Conversation ID Missing", { status: 400 });
     }
-    let messages: Message[];
+    let messages: DirectMessage[];
     if (cursor) {
-      messages = await db.message.findMany({
+      messages = await db.directMessage.findMany({
         take: MESSAGES_PER_PAGE,
         skip: 1,
         cursor: {
           id: cursor,
         },
         where: {
-          channelId,
+          conversationId,
         },
         include: {
           member: {
@@ -34,22 +34,16 @@ export async function GET(req: Request) {
               profile: true,
             },
           },
-          replyTo: {
-            include: {
-              member: true,
-            }
-          }
         },
-
         orderBy: {
           createdAt: "desc",
         },
       });
     } else {
-      messages = await db.message.findMany({
+      messages = await db.directMessage.findMany({
         take: MESSAGES_PER_PAGE,
         where: {
-          channelId,
+          conversationId,
         },
         include: {
           member: {
@@ -57,11 +51,6 @@ export async function GET(req: Request) {
               profile: true,
             },
           },
-          replyTo: {
-            include: {
-              member: true,
-            }
-          }
         },
         orderBy: {
           createdAt: "desc",
@@ -76,9 +65,8 @@ export async function GET(req: Request) {
       item: messages,
       nextCursor,
     });
-
   } catch (error) {
-    console.log("[MESSAGE_FETCH_ERROR]", error);
+    console.log("[DIRECT_MESSAGE_FETCH_ERROR]", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }

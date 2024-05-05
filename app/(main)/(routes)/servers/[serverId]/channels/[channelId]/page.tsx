@@ -1,14 +1,15 @@
+
 import { currentProfile } from "@/lib/current-profile";
 import { redirectToSignIn } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 import React from "react";
 import { redirect } from "next/navigation";
-// import ChatMessages from "@/components/chat/ChatMessages";
 import { ChannelType } from "@prisma/client";
 import ChatHeader from "@/components/chat/chat-header";
 import ChatInput from "@/components/chat/chat-input";
 import ChatMessages from "@/components/chat/chat-messages";
-// import MediaRoom from "@/components/MediaRoom";
+import { ReplyContextType } from "@/types";
+import ChatClientWrapperMessages from "@/components/chat/chat-client-wrapper-messages";
 
 interface PageProps {
   params: {
@@ -34,6 +35,19 @@ const ChannelIdPage = async ({ params }: PageProps) => {
   if (!channel || !member) {
     redirect("/");
   }
+
+  // const [replyContext, setReplyContext] = useState<ReplyContextType | null>(null);
+
+  // const handleSetReplyContext = (message: ReplyContextType) => {
+  //   console.log("Inside handleSetReplyContext")
+  //   console.log(message)
+  //   setReplyContext({
+  //     id: message.id,
+  //     content: message.content,
+  //     authorName: message.authorName
+  //   });
+  // };
+
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <ChatHeader
@@ -41,10 +55,10 @@ const ChannelIdPage = async ({ params }: PageProps) => {
         serverId={channel.serverId}
         type="channel"
       />
-      
+
       {channel.type === ChannelType.TEXT && (
         <>
-          <ChatMessages
+          {/* <ChatMessages
             member={member}
             name={channel.name}
             type="channel"
@@ -57,14 +71,19 @@ const ChannelIdPage = async ({ params }: PageProps) => {
             paramKey="channelId"
             chatId={channel.id}
             paramValue={channel.id}
+            handleSetReplyContext={handleSetReplyContext}
+          /> */}
+          <ChatClientWrapperMessages
+            member={member}
+            channel={channel}
           />
-
-          <ChatInput
+          {/* <ChatInput
             name={channel.name}
             type="channel"
             apiUrl="/api/socket/messages"
             query={{ serverId: channel.serverId, channelId: channel.id }}
-          />
+          // replyContext={replyContext}
+          /> */}
         </>
       )}
       {/* {channel.type === ChannelType.AUDIO && (

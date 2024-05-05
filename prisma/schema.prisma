@@ -109,8 +109,14 @@ model Message {
   member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
   channel   Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
 
+  // Self-relation to support message replies
+  replyToId  String?   @map("reply_to_id")
+  replyTo    Message?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  replies    Message[] @relation("ReplyTo") // Represents all messages that are replies to this message
+
   @@index([memberId])
   @@index([channelId])
+  @@index([replyToId])
 }
 
 model Conversation {
