@@ -4,9 +4,11 @@
 import ChatHeader from "@/components/chat/chat-header";
 import ChatInput from "@/components/chat/chat-input";
 import ChatMessages from "@/components/chat/chat-messages";
+import MediaRoom from "@/components/media-room";
 import { getOrCreateConversation } from "@/lib/conversation";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
+import { ReplyContextType } from "@/types";
 import { redirectToSignIn } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -19,9 +21,11 @@ interface PageProps {
   searchParams: {
     video?: boolean;
   };
+  handleSetReplyContext: (message: ReplyContextType) => void;
+  setReplyContext: (context: ReplyContextType | null) => void;
 }
 
-const Page = async ({ params, searchParams }: PageProps) => {
+const Page = async ({ params, searchParams, handleSetReplyContext, setReplyContext}: PageProps) => {
   const profile = await currentProfile();
   if (!profile) {
     return redirectToSignIn();
@@ -48,7 +52,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
   const { memberOne, memberTwo } = conversation;
   const otherMember =
     memberOne.profileId === profile.id ? memberTwo : memberOne;
-
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <ChatHeader
@@ -57,9 +60,9 @@ const Page = async ({ params, searchParams }: PageProps) => {
         serverId={params.serverId}
         type="conversation"
       />
-      {/* {searchParams.video && (
+      {searchParams.video && (
         <MediaRoom chatId={conversation.id} video={true} audio={true} />
-      )} */}
+      )}
       {!searchParams.video && (
         <>
           <ChatMessages
@@ -72,6 +75,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
             paramValue={conversation.id}
             socketQuery={{ conversationId: conversation.id }}
             socketUrl="/api/socket/direct-messages"
+            handleSetReplyContext={handleSetReplyContext}
           />
           <ChatInput
             name={otherMember.profile.name}
@@ -80,6 +84,8 @@ const Page = async ({ params, searchParams }: PageProps) => {
             query={{
               conversationId: conversation.id,
             }}
+            replyContext={null}
+            setReplyContext={setReplyContext}
           />
         </>
       )}

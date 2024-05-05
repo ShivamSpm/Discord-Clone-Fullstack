@@ -4,6 +4,7 @@ import UserAvatar from "../user-avatar";
 import MobileToggle from "../mobile-toggle";
 // import MobileToggle from "../MobileToggle";
 import SocketIndicator from "../socket-indicator";
+import ChatVideoBtn from "./chat-video-button";
 // import ChatVideoBtn from "./ChatVideoBtn";
 
 interface ChatHeaderProps {
@@ -34,7 +35,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
       )}
       <p className="font-semibold text-md text-black dark:text-white">{name}</p>
       <div className="ml-auto flex items-center">
-        {/* {type === "conversation" && <ChatVideoBtn />} */}
+        {type === "conversation" && <ChatVideoBtn />}
         <SocketIndicator />
       </div>
     </div>

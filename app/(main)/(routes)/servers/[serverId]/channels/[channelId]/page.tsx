@@ -6,10 +6,8 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { ChannelType } from "@prisma/client";
 import ChatHeader from "@/components/chat/chat-header";
-import ChatInput from "@/components/chat/chat-input";
-import ChatMessages from "@/components/chat/chat-messages";
-import { ReplyContextType } from "@/types";
 import ChatClientWrapperMessages from "@/components/chat/chat-client-wrapper-messages";
+import MediaRoom from "@/components/media-room";
 
 interface PageProps {
   params: {
@@ -36,17 +34,6 @@ const ChannelIdPage = async ({ params }: PageProps) => {
     redirect("/");
   }
 
-  // const [replyContext, setReplyContext] = useState<ReplyContextType | null>(null);
-
-  // const handleSetReplyContext = (message: ReplyContextType) => {
-  //   console.log("Inside handleSetReplyContext")
-  //   console.log(message)
-  //   setReplyContext({
-  //     id: message.id,
-  //     content: message.content,
-  //     authorName: message.authorName
-  //   });
-  // };
 
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
@@ -58,40 +45,18 @@ const ChannelIdPage = async ({ params }: PageProps) => {
 
       {channel.type === ChannelType.TEXT && (
         <>
-          {/* <ChatMessages
-            member={member}
-            name={channel.name}
-            type="channel"
-            apiUrl="/api/messages"
-            socketUrl="/api/socket/messages"
-            socketQuery={{
-              channelId: channel.id,
-              serverId: channel.serverId,
-            }}
-            paramKey="channelId"
-            chatId={channel.id}
-            paramValue={channel.id}
-            handleSetReplyContext={handleSetReplyContext}
-          /> */}
           <ChatClientWrapperMessages
             member={member}
             channel={channel}
           />
-          {/* <ChatInput
-            name={channel.name}
-            type="channel"
-            apiUrl="/api/socket/messages"
-            query={{ serverId: channel.serverId, channelId: channel.id }}
-          // replyContext={replyContext}
-          /> */}
         </>
       )}
-      {/* {channel.type === ChannelType.AUDIO && (
+      {channel.type === ChannelType.AUDIO && (
         <MediaRoom chatId={channel.id} video={false} audio={true} />
       )}
       {channel.type === ChannelType.VIDEO && (
         <MediaRoom chatId={channel.id} video={true} audio={true} />
-      )} */}
+      )}
     </div>
   );
 };
