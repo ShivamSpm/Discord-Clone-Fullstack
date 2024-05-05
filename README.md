@@ -45,3 +45,29 @@ The Discord clone is designed to simulate the core functionalities of the popula
 
 
 ### Screenshots
+* `Login page`
+[image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/ad704422-d3ad-4b8f-b83f-5238fc0c7214)
+
+* `Create new server page`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/2a869973-a2bf-4035-9531-a88d6c78e703)
+
+
+* `Server and channel page`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/b644b7ba-cd44-4219-be21-6374411c9420)
+
+
+* `Invite Friends and Manage Members modal`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/63425953-b88a-4adf-9202-ff4f49f6550f)
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/d2e5d2f9-b5ed-4933-aec4-997733c825bf)
+
+
+* `Voice and Video functionality`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/b0f2b0b5-c33d-4259-8031-a7d0365739bf)
+
+
+
