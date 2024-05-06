@@ -33,9 +33,9 @@ The Discord clone is designed to simulate the core functionalities of the popula
 -----------------------------------------
 
 ### Implementation
-* Frontend: Built with Next.js and TypeScript, leveraging the powerful features of React for component-based architecture. Tailwind CSS provides a flexible styling framework that adapts to various device screens.
+* Frontend: Built with Next.js and TypeScript, leveraging the powerful features of React for component-based architecture. Tailwind CSS along with shadcn/ui provides a flexible styling framework that adapts to various device screens. Used React custom hooks to open and close modals.
 * Backend: Utilizes Prisma as an ORM to interact with a PostgreSQL database, managing data persistence for user information, messages, and channel details. Server-side logic is handled in Next.js API routes, providing a clear separation of concerns and streamlined data handling.
-* Real-Time Features: Socket.io is used to establish a WebSocket connection between the users, enabling real-time bidirectional event-based communication. This allows the app to instantly update all clients when messages are sent or channels are updated. Livekit is used for voice and video communications. It is an open source project that provides scalable, multi-user conferencing based on WebRTC.
+* Real-Time Features: Socket.io is used to establish a WebSocket connection between the users, enabling real-time bidirectional event-based communication. This allows the app to instantly update all clients when messages are sent or channels are updated. Livekit is used for voice and video communications. It is an open source project that provides scalable, multi-user conferencing based on WebRTC. 
 
 -----------------------------------------
 
