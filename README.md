@@ -66,6 +66,10 @@ The Discord clone is designed to simulate the core functionalities of the popula
 
 ![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/d2e5d2f9-b5ed-4933-aec4-997733c825bf)
 
+* `Chat and reply functionality`
+  
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/fd33309e-ea49-4059-a625-df3147d6a6ab)
+
 
 * `Voice and Video functionality`
 
