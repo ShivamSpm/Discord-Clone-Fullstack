@@ -1,40 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+ <a> <img height=200px src="./public/logo.png" alt="Discord Logo"> </a>
+</p>
 
-## Getting Started
+<h1 align="center">Discord Clone Full Stack Web App</h1>
+<div align="center">
+     <h4 align="center">This project is a full stack Discord clone built using Next.js (Typescript), styled with Tailwind CSS, and incorporates real-time communication features via Socket.io. It leverages Prisma as an ORM for PostgreSQL to handle database operations, creating a robust and interactive chat application.
+     </h4><br/>
+     <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white"/><img  
+       src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"/> <img 
+       src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/> <img 
+       src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white"/> <img 
+       src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"/><br/>
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+  <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101"/>
+</div>
 
-First, run the development server:
+-----------------------------------------
+### Overview
+The Discord clone is designed to simulate the core functionalities of the popular chat service, Discord. It features user authentication, real-time messaging, and dynamic channel management. The application is built using Next.js, a React framework, which facilitates server-side rendering and static site generation to enhance performance and SEO. Tailwind CSS is used for its utility-first approach to design, allowing for rapid and responsive UI development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-----------------------------------------
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* User Authentication: Secure login and registration functionality using Clerk
+* Server Management: Users can create their own channel, invite friends and manage members by assigning them roles or removing them from the server
+* Channel Management: Users can create, join, and manage channels with voice and video functionality
+* Real-Time Messaging: Users can send and receive messages instantly with Socket.io. They can send messages in a text channel or directly to their friends. They have the ability to edit, delete or reply to a message
+* Responsive Design: Utilizing Tailwind CSS and shadcn/ui components for a flexible and adaptive user interface
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+-----------------------------------------
 
-## Learn More
+### Implementation
+* Frontend: Built with Next.js and TypeScript, leveraging the powerful features of React for component-based architecture. Tailwind CSS along with shadcn/ui provides a flexible styling framework that adapts to various device screens. Used React custom hooks to open and close modals.
+* Backend: Utilizes Prisma as an ORM to interact with a PostgreSQL database, managing data persistence for user information, messages, and channel details. Server-side logic is handled in Next.js API routes, providing a clear separation of concerns and streamlined data handling.
+* Real-Time Features: Socket.io is used to establish a WebSocket connection between the users, enabling real-time bidirectional event-based communication. This allows the app to instantly update all clients when messages are sent or channels are updated. Livekit is used for voice and video communications. It is an open source project that provides scalable, multi-user conferencing based on WebRTC. 
 
-To learn more about Next.js, take a look at the following resources:
+-----------------------------------------
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Challenges Faced
+* **Real-Time Data Management:** Implementing real-time communication while ensuring data consistency across clients was challenging. Socket.io was utilized to manage websockets for live data transmission but required careful state management to sync with the UI updates.
+* **Scalable Database Design:** Designing a database schema that supports complex queries efficiently while maintaining fast response times for a growing number of users and messages. Prisma and PostgreSQL were key in managing relationships and ensuring integrity.
+* **Authentication and Security:** Implementing a secure authentication system that protects user data and prevents unauthorized access was critical. The system integrates with Next.js API routes to handle secure sessions and user authentication.
 
 
+### Screenshots
+* `Login page`
+  
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/ad704422-d3ad-4b8f-b83f-5238fc0c7214)
 
-Watch Code with antonio tutorial timestamp 5:01:00
+* `Create new server page`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/2a869973-a2bf-4035-9531-a88d6c78e703)
+
+
+* `Server and channel page`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/b644b7ba-cd44-4219-be21-6374411c9420)
+
+
+* `Invite Friends and Manage Members modal`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/63425953-b88a-4adf-9202-ff4f49f6550f)
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/d2e5d2f9-b5ed-4933-aec4-997733c825bf)
+
+* `Chat and reply functionality`
+  
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/fd33309e-ea49-4059-a625-df3147d6a6ab)
+
+
+* `Voice and Video functionality`
+
+![image](https://github.com/ShivamSpm/Discord-Clone-Fullstack/assets/43480557/b0f2b0b5-c33d-4259-8031-a7d0365739bf)
+
+
+
