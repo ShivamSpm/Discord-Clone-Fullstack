@@ -21,9 +21,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.withRegistry("https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com", 'aws-ecr-credentials') {
-                        def app = docker.build("${DOCKER_IMAGE}")
-                        app.push()
+                    withAWS(credentials: 'aws-ecr-credentials', region: "${AWS_REGION}") {
+                        docker.withRegistry("https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com") {
+                            def app = docker.build("${DOCKER_IMAGE}")
+                            app.push()
+                        }
                     }
                 }
             }
@@ -43,10 +45,7 @@ pipeline {
         stage('Deploy to ECS') {
             steps {
                 script {
-                    withCredentials([[
-                        $class: 'AmazonWebServicesCredentialsBinding',
-                        credentialsId: 'aws-ecr-credentials'
-                    ]]) {
+                    withAWS(credentials: 'aws-ecr-credentials', region: "${AWS_REGION}") {
                         sh '''
                         aws ecs update-service --cluster ${ECS_CLUSTER_NAME} --service ${ECS_SERVICE_NAME} --force-new-deployment
                         '''
