@@ -80,6 +80,15 @@ export default async function handler(
             profile: true,
           },
         },
+        replyTo: {
+          include: {
+            member: {
+              include: {
+                profile: true,
+              }
+            }
+          }
+        }
       },
     });
 

@@ -36,7 +36,11 @@ export async function GET(req: Request) {
           },
           replyTo: {
             include: {
-              member: true,
+              member: {
+                include: {
+                  profile: true,
+                }
+              }
             }
           }
         },
@@ -59,7 +63,11 @@ export async function GET(req: Request) {
           },
           replyTo: {
             include: {
-              member: true,
+              member: {
+                include: {
+                  profile: true,
+                }
+              }
             }
           }
         },

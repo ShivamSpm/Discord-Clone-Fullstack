@@ -21,11 +21,11 @@ interface PageProps {
   searchParams: {
     video?: boolean;
   };
-  handleSetReplyContext: (message: ReplyContextType) => void;
-  setReplyContext: (context: ReplyContextType | null) => void;
+  // handleSetReplyContext: (message: ReplyContextType) => never;
+  // setReplyContext: (context: ReplyContextType | null) => never;
 }
 
-const Page = async ({ params, searchParams, handleSetReplyContext, setReplyContext}: PageProps) => {
+const Page = async ({ params, searchParams}: PageProps) => {
   const profile = await currentProfile();
   if (!profile) {
     return redirectToSignIn();
@@ -65,7 +65,8 @@ const Page = async ({ params, searchParams, handleSetReplyContext, setReplyConte
       )}
       {!searchParams.video && (
         <>
-          <ChatMessages
+        WIP
+          {/* <ChatMessages
             member={currentMember}
             name={otherMember.profile.name}
             chatId={conversation.id}
@@ -86,7 +87,7 @@ const Page = async ({ params, searchParams, handleSetReplyContext, setReplyConte
             }}
             replyContext={null}
             setReplyContext={setReplyContext}
-          />
+          /> */}
         </>
       )}
     </div>

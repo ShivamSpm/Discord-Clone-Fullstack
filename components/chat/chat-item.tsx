@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import UserAvatar from "../user-avatar";
 import ToolTipAction from "../action-tooltip";
 import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash, Reply } from "lucide-react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import * as z from "zod";
@@ -31,7 +30,11 @@ interface ChatItemProps {
     isUpdated: boolean;
     socketUrl: string;
     socketQuery: Record<string, string>;
-    replyMessage: Message;
+    replyMessage?: Message & {
+        member: Member & {
+            profile: Profile;
+        };
+    };
     handleSetReplyContext: (message: ReplyContextType) => void;
 }
 
@@ -116,12 +119,15 @@ const ChatItem: React.FC<ChatItemProps> = ({
     // console.log("replyMessage")
     // console.log(replyMessage)
     return (
-        <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
-            {replyMessage && 
-                <div>
-                    {replyMessage.content}
+        <div className="relative group flex flex-col hover:bg-black/5 p-4 transition w-full">
+            {replyMessage && (
+                <div className="flex items-center text-xs mb-3 ml-20 text-gray-400">
+                    <div className="absolute left-8 top-6 h-10 w-20 bg-transparent border-t-2 border-l-2 border-gray-500 rounded-tl-full"></div>
+                    <UserAvatar src={replyMessage.member.profile.imageUrl} className="md:w-5 md:h-5" classNameAvatar="w-5 h-5"/>
+                    <span className="font-small text-gray-300 ml-2 ">{replyMessage.member.profile.name}</span>
+                    <span className="ml-2">{replyMessage.content}</span>
                 </div>
-            }
+            )}
             <div className="group flex gap-x-2 items-start w-full">
                 <div
                     onClick={onMemberClick}

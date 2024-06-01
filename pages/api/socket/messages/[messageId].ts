@@ -98,6 +98,7 @@ export default async function handler(
           deleted: true,
           fileUrl: "",
           content: "This Message Has Been Deleted",
+          replyToId: null
         },
         include: {
           member: {
@@ -125,6 +126,15 @@ export default async function handler(
               profile: true,
             },
           },
+          replyTo: {
+            include: {
+              member: {
+                include: {
+                  profile: true,
+                }
+              }
+            }
+          }
         },
       });
     }
